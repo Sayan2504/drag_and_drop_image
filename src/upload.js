@@ -2,13 +2,14 @@ import React, {useState} from "react";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 const UploadForm = () => {
-  const [image, setImage] = useState({ preview: "", raw: "",  });
+  const [image, setImage] = useState({ preview: "", raw: "", text: "" });
 
   const previewImage = (e) => {
     if (e.target.files.length) {
       setImage({
         preview: URL.createObjectURL(e.target.files[0]),
-        raw: e.target.files[0]
+        raw: e.target.files[0],
+        text: e.target.files[0].name
       });
     }
   }
@@ -29,7 +30,10 @@ const UploadForm = () => {
               <div className="col-sm-3">
                 <div className="form-group">
                   {image.preview ? (
-                    <img src={image.preview} alt="" width="150" height="150" />
+                    <>
+                      <img src={image.preview} alt="" width="150" height="150"/>
+                      <div className="mt-1 text-center"><strong>{image.text}</strong></div>
+                    </>
                   ) : (
                     <></>
                   )}
