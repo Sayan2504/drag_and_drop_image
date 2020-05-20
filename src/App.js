@@ -1,10 +1,10 @@
 import React from "react";
 import "./App.css";
-import Upload from "./upload";
+import UploadForm from "./upload";
 
 const App = () => {
   return (
-    <Upload/>
+    <UploadForm />        
   );
 }
 
