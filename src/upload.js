@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
-const UploadForm = () => {
+const UploadForm = ({onSubmit}) => {
   const [image, setImage] = useState([]);
+  const [description,setDescription] = useState("");
+
+  const addDescription = (e) => {
+      setDescription(e.target.value)  
+  };
 
   const previewImage = (files) => {
     let images = [];
     Object.values(files).map((file) => {
       let singleImage = {
         preview: URL.createObjectURL(file),
-        raw: file,
         text: file.name
       };
       images.push(singleImage);
@@ -41,32 +45,42 @@ const UploadForm = () => {
   ));
 
   return (
-    <div className="row justify-content-center upload-image">
-      <div className="col-sm-12">
-        <h3 className="text-center">
-          <strong>Upload Image</strong>
-        </h3>
+    <div className="container">
+      <div className="row justify-content-center upload-image">
+        <div className="col-sm-12">
+          <h3 className="text-center">
+            <strong>Upload Image</strong>
+          </h3>
+        </div>
       </div>
-      <div className="col-sm-10">
-        <div className="card">
-          <div className="card-header">
-            <form encType="multipart/form-data">
-              <div className="form-group">
-                <h5>Add Image</h5>
-                <input type="file" className="form-control" 
-                  onChange={(e) => { previewImage(e.target.files);}}
-                  multiple
-                />
-              </div>
-              <div className="row">
-                {singleImage}  
-              </div>
-              <div className="form-group">
-                <h5>Description</h5>
-                <input type="text" className="form-control" placeholder="Add description about the image(s)"/>
-              </div>
-              <button className="btn btn-primary btn-block">Upload Images</button>
-            </form>
+      <div className="row justify-content-center">  
+        <div className="col-sm-12">
+          <div className="card">
+            <div className="card-header">
+              <form encType="multipart/form-data" 
+                onSubmit = {e => {
+                e.preventDefault();
+                onSubmit(image, description);
+                setDescription("");
+                setImage([]);
+              }}>
+                <div className="form-group">
+                  <h5>Add Image</h5>
+                  <input type="file" className="form-control" 
+                    onChange={(e) => { previewImage(e.target.files);}}
+                    multiple
+                  />
+                </div>
+                <div className="row">
+                  {singleImage}  
+                </div>
+                <div className="form-group">
+                  <h5>Description</h5>
+                  <input type="text" value={description} className="form-control" onChange={addDescription} placeholder="Add description about the image(s)"/>
+                </div>
+                <input type="submit" className="btn btn-primary btn-block" value="Upload Images"/>
+              </form>
+            </div>
           </div>
         </div>
       </div>
