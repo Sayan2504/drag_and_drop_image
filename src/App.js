@@ -4,23 +4,31 @@ import UploadForm from "./upload";
 import Images from "./images";
 
 const App = () => {
-  const[description, setDescription] = useState("")
-  const[image, setImage] = useState([])
+  const [data, setData] = useState([]);
 
   const addImages = (images, description) =>{
-    setImage(prev => prev.concat({preview: images.preview, name: images.text}));
-    setDescription(prev => prev.concat({description: description}));  
+    let temp = data;
+    let t = {
+      images: images,
+      description: description,
+    };
+    temp = temp.concat(t);
+    setData(temp); 
   }
 
   useEffect(() => {
-    console.log("useState", image);
-  }, [image]);
+    console.log("useState", data);
+  }, [data]);
+
+  const imageList = data.map((item) => (
+    <Images imgData={item}/>
+  ));
   
   return (
     <div>
-      <UploadForm onSubmit={addImages}/> 
-      <Images image={image} description={description}/>
-    </div>       
+      <UploadForm onSubmit={addImages} />
+      {imageList}
+    </div>
   );
 }
 

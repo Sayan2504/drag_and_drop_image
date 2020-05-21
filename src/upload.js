@@ -48,9 +48,7 @@ const UploadForm = ({onSubmit}) => {
     <div className="container">
       <div className="row justify-content-center upload-image">
         <div className="col-sm-12">
-          <h3 className="text-center">
-            <strong>Upload Image</strong>
-          </h3>
+          <h3 className="text-center"><strong>Upload Image</strong></h3>
         </div>
       </div>
       <div className="row justify-content-center">  
