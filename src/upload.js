@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 const UploadForm = ({onSubmit}) => {
   const [image, setImage] = useState([]);
   const [description,setDescription] = useState("");
+  const imageInputRef = useRef();
 
   const addDescription = (e) => {
       setDescription(e.target.value)  
@@ -60,14 +61,15 @@ const UploadForm = ({onSubmit}) => {
                 e.preventDefault();
                 onSubmit(image, description);
                 setDescription("");
+                imageInputRef.current.value = "";
                 setImage([]);
-                e.target.value = null;
               }}>
                 <div className="form-group">
                   <h5>Add Image</h5>
                   <input type="file" className="form-control"
-                    onChange={(e) => { previewImage(e.target.files);}}
-                    multiple required
+                    onChange={e => { previewImage(e.target.files);}}
+                    ref={imageInputRef}
+                    multiple required autofocus
                     title = "Please enter image(s) for uploading"
                   />
                 </div>
@@ -76,7 +78,11 @@ const UploadForm = ({onSubmit}) => {
                 </div>
                 <div className="form-group">
                   <h5>Description</h5>
-                  <input type="text" value={description} className="form-control" onChange={addDescription} placeholder="Add description about the image(s)"/>
+                  <input type="text" value={description} className="form-control" 
+                    onChange={addDescription} placeholder="Add description about the image(s) (optional)"
+                    title = "Please enter description for the image(s) (optional)"
+                    autofocus
+                  />
                 </div>
                 <input type="submit" className="btn btn-primary btn-block" value="Upload Images"/>
               </form>
