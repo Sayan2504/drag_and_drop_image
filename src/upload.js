@@ -61,12 +61,14 @@ const UploadForm = ({onSubmit}) => {
                 onSubmit(image, description);
                 setDescription("");
                 setImage([]);
+                e.target.value = null;
               }}>
                 <div className="form-group">
                   <h5>Add Image</h5>
                   <input type="file" className="form-control"
                     onChange={(e) => { previewImage(e.target.files);}}
-                    multiple
+                    multiple required
+                    title = "Please enter image(s) for uploading"
                   />
                 </div>
                 <div className="row">
