@@ -7,13 +7,11 @@ const App = () => {
   const [data, setData] = useState([]);
 
   const addImages = (images, description) =>{
-    let temp = data;
     let t = {
       images: images,
       description: description,
     };
-    temp = temp.concat(t);
-    setData(temp); 
+    setData(data => data.concat(t));
   }
 
   useEffect(() => {

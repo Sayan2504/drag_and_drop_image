@@ -64,7 +64,7 @@ const UploadForm = ({onSubmit}) => {
               }}>
                 <div className="form-group">
                   <h5>Add Image</h5>
-                  <input type="file" className="form-control" 
+                  <input type="file" className="form-control"
                     onChange={(e) => { previewImage(e.target.files);}}
                     multiple
                   />
