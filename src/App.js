@@ -6,28 +6,24 @@ import Images from "./images";
 const App = () => {
   const [data, setData] = useState([]);
 
-  const addImages = (images, description) =>{
+  const addImages = (images, description) => {
     let t = {
       images: images,
       description: description,
     };
-    setData(data => data.concat(t));
-  }
+    setData((data) => data.concat(t));
+  };
 
   useEffect(() => {
     console.log("useState", data);
   }, [data]);
 
-  const imageList = data.map((item) => (
-    <Images imgData={item}/>
-  ));
-  
   return (
     <div>
       <UploadForm onSubmit={addImages} />
-      {imageList}
+      <Images imgData={data} />
     </div>
   );
-}
+};
 
 export default App;
