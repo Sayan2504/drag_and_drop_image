@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Image from "./image";
 
-const Images = ({ imgData }) => {
+const Images = ({ imgData, moveImage }) => {
   const images = [];
 
   imgData.forEach((item) => {
@@ -18,7 +18,7 @@ const Images = ({ imgData }) => {
   console.log(images);
 
   const imgList = images.map((img) => (
-    <Image image={img}/>
+    <Image image={img} moveImage={moveImage}/>
   ));
 
   return (
