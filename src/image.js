@@ -4,7 +4,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 const type = "Image";
 
-const Image = ( { image, index, moveImage } ) => {
+const Image = ( { image, moveImage, index } ) => {
   const ref = useRef(null);
 
   const [{ isDragging }, drag] = useDrag({
@@ -24,8 +24,12 @@ const Image = ( { image, index, moveImage } ) => {
         return;
       }
       const dragIndex = item.index;
+      //console.log(dragIndex);
+
       // current element where the dragged element is hovered on
       const hoverIndex = index;
+      //console.log(hoverIndex);
+      
       // If the dragged element is hovered in the same place, then do nothing
       if (dragIndex === hoverIndex) { 
         return;
@@ -45,7 +49,7 @@ const Image = ( { image, index, moveImage } ) => {
   
   return(
     <div className="col-sm-3 mt-3">
-      <div class="hvrbox" ref={ref} style={{ opacity: isDragging ? 0 : 1 }}>
+      <div className="hvrbox" ref={ref} style={{ opacity: isDragging ? 0 : 1 }}>
         <div className="card">
           <div className="card-header">
             <img src={image.photo.preview} alt="" width="210" height="150" />
@@ -54,8 +58,8 @@ const Image = ( { image, index, moveImage } ) => {
             </div>
           </div>
         </div>
-        <div class="hvrbox-layer_top hvrbox-layer_scale">
-          <div class="hvrbox-text">
+        <div className="hvrbox-layer_top hvrbox-layer_scale">
+          <div className="hvrbox-text">
             {image.description ? image.description : image.photo.text}
           </div>
         </div>

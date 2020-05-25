@@ -17,8 +17,8 @@ const Images = ({ imgData, moveImage }) => {
 
   console.log(images);
 
-  const imgList = images.map((img) => (
-    <Image image={img} moveImage={moveImage}/>
+  const imgList = images.map((img, index) => (
+    <Image image={img} moveImage={moveImage} index={index}/>
   ));
 
   return (

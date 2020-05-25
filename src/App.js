@@ -20,6 +20,7 @@ const App = () => {
   const moveImage = (dragIndex, hoverIndex) => {
     // Get the dragged element
     const draggedImage = data[dragIndex];
+    console.log(data[dragIndex]);
     /*
       - copy the dragged image before hovered element (i.e., [hoverIndex, 0, draggedImage])
       - remove the previous reference of dragged element (i.e., [dragIndex, 1])
@@ -40,7 +41,7 @@ const App = () => {
     <div>
       <UploadForm onSubmit={addImages} />
       <DndProvider backend={HTML5Backend}>
-        <Images imgData={data} moveImage={moveImage}/>
+        <Images imgData={data} moveImage={moveImage} />
       </DndProvider>  
     </div>
   );
