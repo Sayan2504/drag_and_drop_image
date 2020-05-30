@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-// import Image from "./image";
-// import Image2 from "./image2";
+import Image from "./image";
 import update from "immutability-helper";
 import Selecto from "react-selecto";
 import Moveable from "react-moveable";
@@ -42,29 +41,7 @@ const Images = ({ imgData }) => {
   };
 
   const imgList = images.map((img, index) => (
-    // <Image2
-    //   className="imageCube"
-    //   image={img}
-    //   moveImage={moveImage}
-    //   index={index}
-    // />
-    <div className="col-sm-3 mt-3 imageCube">
-      <div className="hvrbox">
-        <div className="card">
-          <div className="card-header">
-            <img src={img.photo.preview} alt="" width="210" height="150" />
-            <div className="mt-1 text-center">
-              <strong>{img.photo.text}</strong>
-            </div>
-          </div>
-        </div>
-        <div className="hvrbox-layer_top hvrbox-layer_scale">
-          <div className="hvrbox-text">
-            {img.description ? img.description : img.photo.text}
-          </div>
-        </div>
-      </div>
-    </div>
+    <Image image={img} moveImage={moveImage} index={index} />
   ));
 
   return (
