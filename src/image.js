@@ -34,8 +34,8 @@ const Image = ( { image, moveImage, index } ) => {
   drag(drop(ref));
   
   return(
-    <div className="col-sm-3 mt-3 imageCube">
-      <div className="hvrbox" ref={ref} style={{ opacity: isDragging ? 0 : 1 }}>
+    <div className="col-sm-3 mt-3">
+      <div className="hvrbox imageCube" ref={ref} style={{ opacity: isDragging ? 0 : 1 }}>
         <div className="card">
           <div className="card-header">
             <img src={image.photo.preview} alt="" width="210" height="150" />

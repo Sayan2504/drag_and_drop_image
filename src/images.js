@@ -3,7 +3,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Image from "./image";
 import update from "immutability-helper";
 import Selecto from "react-selecto";
-import Moveable from "react-moveable";
+//import Moveable from "react-moveable";
 
 const Images = ({ imgData }) => {
   const [images, setImages] = useState([]);
@@ -26,6 +26,10 @@ const Images = ({ imgData }) => {
 
     setImages(temp);
   }, [imgData]);
+
+  useEffect(() => {
+    console.log(images);
+  }, [images]);
 
   useEffect(() => {
     console.log(targets);
