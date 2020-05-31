@@ -8,9 +8,9 @@ import Moveable from "react-moveable";
 const Images = ({ imgData }) => {
   const [images, setImages] = useState([]);
   const [targets, setTargets] = useState([]);
-  const [frameMap] = useState(() => new Map());
-  const moveableRef = useRef(null);
-  const selectoRef = useRef(null);
+  // const [frameMap] = useState(() => new Map());
+  // const moveableRef = useRef(null);
+  // const selectoRef = useRef(null);
 
   useEffect(() => {
     let temp = [];
@@ -26,6 +26,10 @@ const Images = ({ imgData }) => {
 
     setImages(temp);
   }, [imgData]);
+
+  useEffect(() => {
+    console.log(targets);
+  }, [targets]);
 
   const moveImage = (dragIndex, hoverIndex) => {
     const draggedImage = images[dragIndex];
@@ -46,90 +50,26 @@ const Images = ({ imgData }) => {
 
   return (
     <div className="container p-5 elements selecto-area">
-      <div className="row">
-        <Moveable
-          ref={moveableRef}
-          draggable={true}
-          target={targets}
-          onClickGroup={(e) => {
-            selectoRef.current.clickTarget(e.inputEvent, e.inputTarget);
-          }}
-          onDragStart={(e) => {
-            const target = e.target;
-
-            if (!frameMap.has(target)) {
-              frameMap.set(target, {
-                translate: [0, 0],
-              });
-            }
-            const frame = frameMap.get(target);
-
-            e.set(frame.translate);
-          }}
-          onDrag={(e) => {
-            const target = e.target;
-            const frame = frameMap.get(target);
-
-            frame.translate = e.beforeTranslate;
-            target.style.transform = `translate(${frame.translate[0]}px, ${frame.translate[1]}px)`;
-          }}
-          onDragGroupStart={(e) => {
-            e.events.forEach((ev) => {
-              const target = ev.target;
-
-              if (!frameMap.has(target)) {
-                frameMap.set(target, {
-                  translate: [0, 0],
-                });
-              }
-              const frame = frameMap.get(target);
-
-              ev.set(frame.translate);
-            });
-          }}
-          onDragGroup={(e) => {
-            e.events.forEach((ev) => {
-              const target = ev.target;
-              const frame = frameMap.get(target);
-
-              frame.translate = ev.beforeTranslate;
-              target.style.transform = `translate(${frame.translate[0]}px, ${frame.translate[1]}px)`;
-            });
-          }}
-        ></Moveable>
-        <Selecto
-          ref={selectoRef}
-          dragContainer={".elements"}
-          selectableTargets={[".selecto-area .imageCube"]}
-          hitRate={0}
-          selectByClick={true}
-          selectFromInside={false}
-          toggleContinueSelect={["shift"]}
-          onDragStart={(e) => {
-            const moveable = moveableRef.current;
-            const target = e.inputEvent.target;
-            if (
-              moveable.isMoveableElement(target) ||
-              targets.some((t) => t === target || t.contains(target))
-            ) {
-              e.stop();
-            }
-          }}
-          onSelectEnd={(e) => {
-            const moveable = moveableRef.current;
-            setTargets(e.selected);
-
-            if (e.isDragStart) {
-              e.inputEvent.preventDefault();
-
-              setTimeout(() => {
-                moveable.dragStart(e.inputEvent);
-              });
-            }
-          }}
-        ></Selecto>
-        {imgList}
-      </div>
+      <Selecto
+        dragContainer={".elements"}
+        selectableTargets={[".selecto-area .imageCube"]}
+        hitRate={100}
+        selectByClick={true}
+        selectFromInside={true}
+        toggleContinueSelect={["shift"]}
+        onSelect={(e) => {
+          e.added.forEach((el) => {
+            let t = [];
+            t = targets.concat(el);
+            setTargets(t);
+            el.classList.add("selected");
+          });
+          e.removed.forEach((el) => {
+            el.classList.remove("selected");
+          });
+        }}
+      ></Selecto>
+      <div className="row">{imgList}</div>
     </div>
   );
 };
