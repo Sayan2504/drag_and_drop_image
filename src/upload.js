@@ -22,9 +22,9 @@ const UploadForm = ({onSubmit}) => {
     setImage(images);
   };
 
-  useEffect(() => {
+  /*useEffect(() => {
     console.log("useState", image);
-  }, [image]);
+  }, [image]);*/
 
   const singleImage = image.map(singleImage => (
     <div className="col-sm-3">
@@ -81,7 +81,6 @@ const UploadForm = ({onSubmit}) => {
                   <input type="text" value={description} className="form-control" 
                     onChange={addDescription} placeholder="Add description about the image(s) (optional)"
                     title = "Please enter description for the image(s) (optional)"
-                    autofocus
                   />
                 </div>
                 <input type="submit" className="btn btn-primary btn-block" value="Upload Images"/>

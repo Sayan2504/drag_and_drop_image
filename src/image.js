@@ -1,13 +1,16 @@
 import React, { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import Selecto from "react-selecto";
 
 const type = "Image";
 
-const Image = ( { image, moveImage, index } ) => {
+const Image = ( { image, moveImage, index, selectoref } ) => {
+  
   const ref = useRef(null);
-
+  
   const [{ isDragging }, drag] = useDrag({
+    //selectoref,
     item: { type, id: image.id, index },
     collect: monitor => ({
       isDragging: monitor.isDragging()
@@ -32,13 +35,14 @@ const Image = ( { image, moveImage, index } ) => {
   });
   
   drag(drop(ref));
+  console.log(ref);
   
   return(
     <div className="col-sm-3 mt-3">
-      <div className="hvrbox imageCube" ref={ref} style={{ opacity: isDragging ? 0 : 1 }}>
+      <div className="hvrbox imageCube" ref={ref} style={{ opacity: isDragging ? 0.7 : 1 }}>
         <div className="card">
           <div className="card-header">
-            <img src={image.photo.preview} alt="" width="210" height="150" />
+            <img src={image.photo.preview} alt="" width="210" height="150"/>
             <div className="mt-1 text-center">
               <strong>{image.photo.text}</strong>
             </div>
@@ -48,7 +52,7 @@ const Image = ( { image, moveImage, index } ) => {
           <div className="hvrbox-text">
             {image.description ? image.description : image.photo.text}
           </div>
-        </div>
+        </div> 
       </div>
     </div>
   );
