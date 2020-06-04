@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { DndProvider } from "react-dnd";
-import {HTML5Backend} from "react-dnd-html5-backend";
-import UploadForm from "./upload";
-import Images from "./images";
+import UploadForm from "./Components/Upload/upload";
+import Images from "./Components/Images/images";
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -23,9 +21,7 @@ const App = () => {
   return (
     <div>
       <UploadForm onSubmit={addImages} />
-      <DndProvider backend={HTML5Backend}>
-        <Images imgData={data}/>
-      </DndProvider>  
+      <Images imgData={data}/> 
     </div>
   );
 };

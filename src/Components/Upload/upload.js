@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./upload.css";
 
 const UploadForm = ({onSubmit}) => {
   const [image, setImage] = useState([]);
@@ -22,9 +23,9 @@ const UploadForm = ({onSubmit}) => {
     setImage(images);
   };
 
-  /*useEffect(() => {
+  useEffect(() => {
     console.log("useState", image);
-  }, [image]);*/
+  }, [image]);
 
   const singleImage = image.map(singleImage => (
     <div className="col-sm-3">
