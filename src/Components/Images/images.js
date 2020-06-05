@@ -111,9 +111,9 @@ const Images = ({ imgData }) => {
           ref={selectoRef}
           dragContainer={".elements"}
           selectableTargets={[".selecto-area .imageCube"]}
-          hitRate={100}
+          hitRate={90}
           selectByClick={true}
-          selectFromInside={false}
+          selectFromInside={true}
           toggleContinueSelect={["shift"]}
           onDragStart={(e) => {
             const moveable = moveableRef.current;
