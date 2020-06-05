@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { Container, Row, Col, Card, Form, Button, Image } from "react-bootstrap";
 import "./upload.css";
 
 const UploadForm = ({onSubmit}) => {
@@ -28,36 +28,36 @@ const UploadForm = ({onSubmit}) => {
   }, [image]);
 
   const singleImage = image.map(singleImage => (
-    <div className="col-sm-3">
-      <div className="form-group">
+    <Col sm={3}>
+      <Form.Group>
         {singleImage.preview ? (
           <>
-            <div className="card">
-              <div className="card-body">
-                <img src={singleImage.preview} alt="" width="205" height="150"/>
-                <div className="mt-1 text-center"><strong>{singleImage.text}</strong></div> 
-              </div>
-            </div>  
+            <Card>
+              <Card.Body>
+                <Image src={singleImage.preview} alt="" width="205" height="150"/>
+                <p className="mt-2 mb-0 text-center"><strong>{singleImage.text}</strong></p> 
+              </Card.Body>
+            </Card>  
           </>
         ) : (
           <></>
         )}
-      </div>
-    </div>
+      </Form.Group>
+    </Col>
   ));
 
   return (
-    <div className="container">
-      <div className="row justify-content-center upload-image">
-        <div className="col-sm-12">
+    <Container>
+      <Row className="justify-content-center upload-image">  
+        <Col>
           <h3 className="text-center"><strong>Upload Image</strong></h3>
-        </div>
-      </div>
-      <div className="row justify-content-center">  
-        <div className="col-sm-12">
-          <div className="card">
-            <div className="card-header">
-              <form encType="multipart/form-data" 
+        </Col>
+      </Row>
+      <Row className="justify-content-center">  
+        <Col>
+          <Card>
+            <Card.Header>
+              <Form encType="multipart/form-data" 
                 onSubmit = {e => {
                 e.preventDefault();
                 onSubmit(image, description);
@@ -65,32 +65,32 @@ const UploadForm = ({onSubmit}) => {
                 imageInputRef.current.value = "";
                 setImage([]);
               }}>
-                <div className="form-group">
-                  <h5>Add Image</h5>
-                  <input type="file" className="form-control"
+                <Form.Group>
+                  <Form.Label><strong>Add Image</strong></Form.Label>
+                  <Form.File
                     onChange={e => { previewImage(e.target.files);}}
                     ref={imageInputRef}
                     multiple required autofocus
                     title = "Please enter image(s) for uploading"
                   />
-                </div>
-                <div className="row">
+                </Form.Group>
+                <Row>
                   {singleImage}  
-                </div>
-                <div className="form-group">
-                  <h5>Description</h5>
-                  <input type="text" value={description} className="form-control" 
+                </Row>
+                <Form.Group>
+                  <Form.Label><strong>Description</strong></Form.Label>
+                  <Form.Control value={description} 
                     onChange={addDescription} placeholder="Add description about the image(s) (optional)"
                     title = "Please enter description for the image(s) (optional)"
                   />
-                </div>
-                <input type="submit" className="btn btn-primary btn-block" value="Upload Images"/>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+                </Form.Group>
+                <Button variant="primary" size="md" type="submit" block>Upload Images</Button>
+              </Form>
+            </Card.Header>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

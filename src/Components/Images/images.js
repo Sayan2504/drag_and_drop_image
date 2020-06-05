@@ -101,6 +101,11 @@ const Images = ({ imgData }) => {
               target.style.transform = `translate(${frame.translate[0]}px, ${frame.translate[1]}px)`;
             });
           }}
+
+          onDragEnd={({ target, isDrag, clientX, clientY }) => {
+            console.log("onDragEnd", target, isDrag);
+          }}
+          
         ></Moveable>
         <Selecto
           ref={selectoRef}
