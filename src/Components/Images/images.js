@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Container, Row, Col, Card, Form, Button, Image } from "react-bootstrap";
 import Selecto from "react-selecto";
 import Moveable from "react-moveable";
 import "./images.css";
@@ -32,28 +33,28 @@ const Images = ({ imgData }) => {
 
   const imgList = images.map((image) => (
     //<Image key={img.photo.text} image={img} moveImage={moveImage} index={index} selectoRef={selectoRef}/>
-    <div className="col-sm-3 mt-3 imageCube">
+    <Col sm={3} className="mt-3 imageCube">
       <div className="hvrbox">
-        <div className="card">
-          <div className="card-header">
-            <img src={image.photo.preview} alt="" width="210" height="150"/>
-            <div className="mt-1 text-center">
+        <Card>
+          <Card.Header>
+            <Image src={image.photo.preview} alt="" width="210" height="150"/>
+            <p className="mt-2 mb-0 text-center">
               <strong>{image.photo.text}</strong>
-            </div>
-          </div>
-        </div>
+            </p>
+          </Card.Header>
+        </Card>
         <div className="hvrbox-layer_top hvrbox-layer_scale">
           <div className="hvrbox-text">
             {image.description ? image.description : image.photo.text}
           </div>
         </div> 
       </div>
-    </div>
+    </Col>
   ));
 
   return (
-    <div className="container p-5 elements selecto-area">
-      <div className="row">
+    <Container className="p-5 elements selecto-area">
+      <Row>
         <Moveable
           ref={moveableRef}
           draggable={true}
@@ -139,8 +140,8 @@ const Images = ({ imgData }) => {
           }}
         ></Selecto>
         {imgList}
-      </div>
-    </div>
+      </Row>
+    </Container>
   );
 };
 
