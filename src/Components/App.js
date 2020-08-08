@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
-import UploadForm from "./Components/Upload/upload";
-import Images from "./Components/Images/images";
+import UploadForm from "./Upload/upload";
+import Images from "./Images/images";
 import { DndProvider } from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 
@@ -23,9 +22,7 @@ const App = () => {
   return (
     <div>
       <UploadForm onSubmit={addImages} />
-      <DndProvider backend={HTML5Backend}  >
-        <Images imgData={data}/> 
-      </DndProvider>
+      <Images imgData={data}/>
     </div>
   );
 };
