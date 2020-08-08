@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Row, Col, Card, Form, Button, Image } from "react-bootstrap";
+import { Container, Row, Col, Card, Image } from "react-bootstrap";
 import Selecto from "react-selecto";
 import Moveable from "react-moveable";
 import "./images.css";
@@ -46,7 +46,7 @@ const Images = ({ imgData }) => {
           <div className="hvrbox-text">
             {image.description ? image.description : image.photo.text}
           </div>
-        </div> 
+        </div>
       </div>
     </Col>
   ));
@@ -58,10 +58,11 @@ const Images = ({ imgData }) => {
           ref={moveableRef}
           draggable={true}
           target={targets}
+          origin={false}
           onClickGroup={(e) => {
             selectoRef.current.clickTarget(e.inputEvent, e.inputTarget);
           }}
-          
+
           onDragStart={(e) => {
             const target = e.target;
             if (!frameMap.has(target)) {

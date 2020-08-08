@@ -8,7 +8,7 @@ const UploadForm = ({onSubmit}) => {
   const imageInputRef = useRef();
 
   const addDescription = (e) => {
-      setDescription(e.target.value)  
+      setDescription(e.target.value)
   };
 
   const previewImage = (files) => {
@@ -35,9 +35,9 @@ const UploadForm = ({onSubmit}) => {
             <Card>
               <Card.Body>
                 <Image src={singleImage.preview} alt="" width="205" height="150"/>
-                <p className="mt-2 mb-0 text-center"><strong>{singleImage.text}</strong></p> 
+                <p className="mt-2 mb-0 text-center"><strong>{singleImage.text}</strong></p>
               </Card.Body>
-            </Card>  
+            </Card>
           </>
         ) : (
           <></>
@@ -48,16 +48,16 @@ const UploadForm = ({onSubmit}) => {
 
   return (
     <Container>
-      <Row className="justify-content-center upload-image">  
+      <Row className="justify-content-center upload-image">
         <Col>
           <h3 className="text-center"><strong>Upload Image</strong></h3>
         </Col>
       </Row>
-      <Row className="justify-content-center">  
+      <Row className="justify-content-center">
         <Col>
           <Card>
             <Card.Header>
-              <Form encType="multipart/form-data" 
+              <Form encType="multipart/form-data"
                 onSubmit = {e => {
                 e.preventDefault();
                 onSubmit(image, description);
@@ -70,16 +70,16 @@ const UploadForm = ({onSubmit}) => {
                   <Form.File
                     onChange={e => { previewImage(e.target.files);}}
                     ref={imageInputRef}
-                    multiple required autofocus
+                    multiple required autoFocus
                     title = "Please enter image(s) for uploading"
                   />
                 </Form.Group>
                 <Row>
-                  {singleImage}  
+                  {singleImage}
                 </Row>
                 <Form.Group>
                   <Form.Label><strong>Description</strong></Form.Label>
-                  <Form.Control value={description} 
+                  <Form.Control value={description}
                     onChange={addDescription} placeholder="Add description about the image(s) (optional)"
                     title = "Please enter description for the image(s) (optional)"
                   />
