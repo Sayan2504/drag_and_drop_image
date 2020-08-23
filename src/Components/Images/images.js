@@ -40,14 +40,12 @@ const Images = ({ imgData }) => {
   ));
 
   return (
-    <Container className="p-5 elements selecto-area">
-      <Row>
+    <Container>
+      <Row className="mt-2 justify-content-center" xs={1} md={3} lg={4}>
         {imgList}
       </Row>
     </Container>
   );
 };
-
-
 
 export default Images;

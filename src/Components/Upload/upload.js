@@ -23,26 +23,13 @@ const UploadForm = ({onSubmit}) => {
     setImage(images);
   };
 
-  useEffect(() => {
-    console.log("useState", image);
-  }, [image]);
-
   const singleImage = image.map(singleImage => (
-    <Col sm={3}>
-      <Form.Group>
-        {singleImage.preview ? (
-          <>
-            <Card>
-              <Card.Body>
-                <Image src={singleImage.preview} alt="" width="205" height="150"/>
-                <p className="mt-2 mb-0 text-center"><strong>{singleImage.text}</strong></p>
-              </Card.Body>
-            </Card>
-          </>
-        ) : (
-          <></>
-        )}
-      </Form.Group>
+    <Col sm={4} className="mt-3">
+      {singleImage.preview ? (
+        <Image src={singleImage.preview} alt="" fluid/>
+      ) : (
+        <></>
+      )}
     </Col>
   ));
 
@@ -50,7 +37,7 @@ const UploadForm = ({onSubmit}) => {
     <Container>
       <Row className="justify-content-center upload-image">
         <Col>
-          <h3 className="text-center"><strong>Upload Image</strong></h3>
+          <h3 className="text-center"><strong>Image Gallery</strong></h3>
         </Col>
       </Row>
       <Row className="justify-content-center">
@@ -74,10 +61,10 @@ const UploadForm = ({onSubmit}) => {
                     title = "Please enter image(s) for uploading"
                   />
                 </Form.Group>
-                <Row>
+                <Row className="mt-2 justify-content-center" xs={1} md={3} lg={4}>
                   {singleImage}
                 </Row>
-                <Form.Group>
+                <Form.Group className="mt-3">
                   <Form.Label><strong>Description</strong></Form.Label>
                   <Form.Control value={description}
                     onChange={addDescription} placeholder="Add description about the image(s) (optional)"

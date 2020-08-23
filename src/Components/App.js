@@ -15,9 +15,9 @@ const App = () => {
     setData((data) => data.concat(t));
   };
 
-  useEffect(() => {
+  /*useEffect(() => {
     console.log("useState", data);
-  }, [data]);
+  }, [data]);*/
 
   return (
     <div>
