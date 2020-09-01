@@ -1,11 +1,12 @@
 import React, { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
-import { Col, Card, Image } from "react-bootstrap";
+import { Col, Image } from "react-bootstrap";
+import "./styles.css";
 
 const type = "Image";
 
 const SingleImage = ( { image, moveImage, index } ) => {
-  const ref = useRef(null);
+  const imageRef = useRef(null);
 
   const [{ isDragging }, drag] = useDrag({
     item: { type, id: image.id, index },
@@ -17,29 +18,29 @@ const SingleImage = ( { image, moveImage, index } ) => {
   const [, drop] = useDrop({
     accept: type,
     hover(item) {
-      if (!ref.current) {
+      if (!imageRef.current) {
         return;
       }
       const dragIndex = item.index;
-      const hoverIndex = index;
+      const dropIndex = index;
 
-      if (dragIndex === hoverIndex) {
+      if (dragIndex === dropIndex) {
         return;
       }
-      moveImage(dragIndex, hoverIndex);
-      item.index = hoverIndex;
+      moveImage(dragIndex, dropIndex);
+      item.index = dropIndex;
     }
-  });
+  } );
 
-  drag(drop(ref));
+  drag(drop(imageRef));
 
   return(
     <Col className="mt-3">
-      <div className="hvrbox" ref = { ref } style= { { opacity: isDragging ? 0 : 1  } }>
-        <Image src={image.photo.preview} alt="" fluid/>
+      <div className="hvrbox" ref = { imageRef } style= { { opacity: isDragging ? 0.5 : 1  } } >
+        <Image src={image.photo.preview} alt="" thumbnail/>
         <div className="hvrbox-layer_top hvrbox-layer_scale">
           <div className="hvrbox-text">
-            {image.description ? image.description : image.photo.text}
+            { image.description ? image.description : image.photo.text }
           </div>
         </div>
       </div>
