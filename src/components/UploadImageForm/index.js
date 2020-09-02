@@ -24,9 +24,9 @@ const UploadForm = ( { onSubmit } ) => {
   };
 
   const singleImage = images.map(singleImage => (
-    <Col sm={4} className="mt-3">
+    <Col sm={4} className="mt-2 pl-1 pr-1 tile-view">
       { singleImage.preview ? (
-        <Image src = { singleImage.preview } alt="" fluid/>
+        <Image src = { singleImage.preview } alt="" fluid className="img"/>
       ) : (
         <></>
       ) }
@@ -34,7 +34,7 @@ const UploadForm = ( { onSubmit } ) => {
   ));
 
   return (
-    <Container>
+    <Container className="gallery">
       <Row className="justify-content-center upload-image-form">
         <Col>
           <h3 className="text-center"><strong>Image Gallery</strong></h3>
@@ -61,7 +61,7 @@ const UploadForm = ( { onSubmit } ) => {
                     title = "Please enter image(s) for uploading"
                   />
                 </Form.Group>
-                <Row className="mt-2 justify-content-center" xs={1} md={3} lg={4}>
+                <Row className="mt-2 pl-2 pr-2" xs={1} md={3} lg={4}>
                   { singleImage }
                 </Row>
                 <Form.Group className="mt-3">

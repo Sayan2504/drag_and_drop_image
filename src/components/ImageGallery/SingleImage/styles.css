@@ -75,3 +75,9 @@
 	-ms-transform: scale(1);
 	transform: scale(1);
 }
+
+.tile-view {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}

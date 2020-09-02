@@ -9,8 +9,8 @@ const Images = ( { imageSet } ) => {
 
   useEffect(() => {
     let imageList = [];
-    imageSet.forEach((imageObject) => {
-      imageObject.images.forEach((image) => {
+    imageSet.map((imageObject) => {
+      imageObject.images.map((image) => {
         let singleImageObject = {
           key: image.text,
           photo: image,
@@ -40,7 +40,7 @@ const Images = ( { imageSet } ) => {
 
   return (
     <Container className="p-5">
-      <Row className="justify-content-center" xs={1} md={3} lg={4}>
+      <Row xs={1} md={3} lg={4}>
         { imageGrid }
       </Row>
     </Container>
