@@ -37,10 +37,10 @@ const SingleImage = ( { image, moveImage, index } ) => {
   return(
     <Col className="pl-1 pr-1 p-2 tile-view">
       <div className="hvrbox" ref = { imageRef } style= { { opacity: isDragging ? 0.5 : 1  } } >
-        <Image src={image.photo.preview} alt="" className="image-tile" fluid/>
+        <Image src={image.images} alt="" className="image-tile" fluid/>
         <div className="hvrbox-layer_top hvrbox-layer_scale">
           <div className="hvrbox-text">
-            { image.description ? image.description : image.photo.text }
+            { image.description ? image.description : image.key }
           </div>
         </div>
       </div>

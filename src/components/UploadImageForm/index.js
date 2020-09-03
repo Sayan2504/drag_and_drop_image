@@ -15,8 +15,8 @@ const UploadForm = ( { onSubmit } ) => {
     let previewImageGrid = [];
     Object.values(files).map((file) => {
       let singleImage = {
-        preview: URL.createObjectURL(file),
-        text: file.name
+        key: file.name,
+        preview: URL.createObjectURL(file)
       };
       previewImageGrid.push(singleImage);
     } );

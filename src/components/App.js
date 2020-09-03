@@ -1,25 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import UploadForm from "./UploadImageForm";
 import ImageGallery from "./ImageGallery";
 
 const App = () => {
-  const [imageSet, setImageSet] = useState([]);
+  const [imageObjectArray, setImageObjectArray] = useState([]);
 
-  const uploadImageSet = (images, description) => {
-    let newImageSet = {
-      images: images,
-      description: description,
-    };
-    setImageSet((imageSet) => imageSet.concat(newImageSet));
+  const uploadImageSet = (uploadedImages, description) => {
+    uploadedImages.map((singleUploadedImage) => {
+      let newImageObject = {
+        key: singleUploadedImage.key,
+        images: singleUploadedImage.preview,
+        description: description,
+      };
+    setImageObjectArray((tempImageObjectArray) => tempImageObjectArray.concat(newImageObject));
+    });
   };
 
   return (
     <div>
       <UploadForm onSubmit = { uploadImageSet } />
       <DndProvider backend = { HTML5Backend } >
-        <ImageGallery imageSet = { imageSet } />
+        <ImageGallery imageObjectArray = { imageObjectArray } />
       </DndProvider>
     </div>
   );

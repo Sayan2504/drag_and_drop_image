@@ -4,28 +4,26 @@ import { Container, Row } from "react-bootstrap";
 import SingleImage from "./SingleImage";
 import update from "immutability-helper";
 
-const Images = ( { imageSet } ) => {
-  const [images, setImages] = useState([]);
+const Images = ( { imageObjectArray } ) => {
+  const [imagesArray, setImagesArray] = useState([]);
 
   useEffect(() => {
-    let imageList = [];
-    imageSet.map((imageObject) => {
-      imageObject.images.map((image) => {
-        let singleImageObject = {
-          key: image.text,
-          photo: image,
-          description: imageObject.description,
-        };
-        imageList.push(singleImageObject);
-      } );
+    let tempImageArray = [];
+    imageObjectArray.map((singleImageObject) => {
+      let tempImageObject = {
+        key: singleImageObject.key,
+        images: singleImageObject.images,
+        description: singleImageObject.description,
+      };
+      tempImageArray.push(tempImageObject);
     } );
-    setImages(imageList);
-  }, [imageSet]);
+    setImagesArray(tempImageArray);
+  }, [imageObjectArray]);
 
   const moveImage = (dragIndex, dropIndex) => {
-    const draggedImage = images[dragIndex];
-    setImages(
-      update(images, {
+    const draggedImage = imagesArray[dragIndex];
+    setImagesArray(
+      update(imagesArray, {
         $splice: [
           [dragIndex, 1],
           [dropIndex, 0, draggedImage],
@@ -34,8 +32,8 @@ const Images = ( { imageSet } ) => {
     );
   };
 
-  const imageGrid = images.map((image, index) => (
-    <SingleImage image = { image } moveImage = { moveImage } index= { index } />
+  const imageGrid = imagesArray.map((image, index) => (
+    <SingleImage image = { image } moveImage = { moveImage } index = { index } />
   ));
 
   return (
