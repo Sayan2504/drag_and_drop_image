@@ -5,7 +5,7 @@ import "./styles.css";
 
 const type = "Image";
 
-const SingleImage = ( { image, moveImage, index } ) => {
+const SingleImageTile = ( { image, moveImage, index } ) => {
   const imageRef = useRef(null);
 
   const [{ isDragging }, drag] = useDrag({
@@ -48,4 +48,4 @@ const SingleImage = ( { image, moveImage, index } ) => {
   );
 };
 
-export default SingleImage;
+export default SingleImageTile;

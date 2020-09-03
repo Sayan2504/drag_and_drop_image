@@ -12,13 +12,11 @@ const UploadForm = ( { onSubmit } ) => {
   };
 
   const preview = (files) => {
-    let previewImageGrid = [];
-    Object.values(files).map((file) => {
-      let singleImage = {
+    let previewImageGrid = Object.values(files).map((file) => {
+      return {
         key: file.name,
-        preview: URL.createObjectURL(file)
-      };
-      previewImageGrid.push(singleImage);
+        preview : URL.createObjectURL(file)
+      }
     } );
     setImages(previewImageGrid);
   };
@@ -57,7 +55,7 @@ const UploadForm = ( { onSubmit } ) => {
                   <Form.File
                     onChange = { e => { preview(e.target.files); } }
                     ref = { imageInputRef }
-                    multiple required autoFocus
+                    multiple required
                     title = "Please enter image(s) for uploading"
                   />
                 </Form.Group>

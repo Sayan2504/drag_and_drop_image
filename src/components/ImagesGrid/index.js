@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row } from "react-bootstrap";
-import SingleImage from "./SingleImage";
+import SingleImageTile from "./ImageTile";
 import update from "immutability-helper";
 
-const Images = ( { imageObjectArray } ) => {
+const ImagesGrid = ( { imageObjectArray } ) => {
   const [imagesArray, setImagesArray] = useState([]);
 
   useEffect(() => {
@@ -13,9 +13,9 @@ const Images = ( { imageObjectArray } ) => {
       let tempImageObject = {
         key: singleImageObject.key,
         images: singleImageObject.images,
-        description: singleImageObject.description,
+        description: singleImageObject.description
       };
-      tempImageArray.push(tempImageObject);
+      return tempImageArray.push(tempImageObject);
     } );
     setImagesArray(tempImageArray);
   }, [imageObjectArray]);
@@ -33,7 +33,7 @@ const Images = ( { imageObjectArray } ) => {
   };
 
   const imageGrid = imagesArray.map((image, index) => (
-    <SingleImage image = { image } moveImage = { moveImage } index = { index } />
+    <SingleImageTile image = { image } moveImage = { moveImage } index = { index } />
   ));
 
   return (
@@ -45,4 +45,4 @@ const Images = ( { imageObjectArray } ) => {
   );
 };
 
-export default Images;
+export default ImagesGrid;
