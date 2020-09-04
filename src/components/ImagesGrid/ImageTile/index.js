@@ -35,13 +35,11 @@ const SingleImageTile = ( { image, moveImage, index } ) => {
   drag(drop(imageRef));
 
   return(
-    <Col className="pl-1 pr-1 p-2 tile-view">
-      <div className="hvrbox" ref = { imageRef } style= { { opacity: isDragging ? 0.5 : 1  } } >
-        <Image src={image.images} alt="" className="image-tile" fluid/>
-        <div className="hvrbox-layer_top hvrbox-layer_scale">
-          <div className="hvrbox-text">
-            { image.description ? image.description : image.key }
-          </div>
+    <Col className="pl-1 pr-1 pt-2 tile-view" ref = { imageRef } style= { { opacity: isDragging ? 0.5 : 1  } } >
+      <Image src={image.images} alt="" fluid className="tile-view__image"/>
+      <div className="tile-view__description">
+        <div className="tile-view__description-text">
+          { image.description ? image.description : image.key }
         </div>
       </div>
     </Col>

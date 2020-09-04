@@ -7,17 +7,6 @@ import ImagesGrid from "./ImagesGrid";
 const App = () => {
   const [imageObjectArray, setImageObjectArray] = useState([]);
 
-  /*const uploadImageSet = (uploadedImages, description) => {
-    uploadedImages.map((singleUploadedImage) => {
-      let newImageObject = {
-        key: singleUploadedImage.key,
-        images: singleUploadedImage.preview,
-        description: description,
-      };
-     return setImageObjectArray((tempImageObjectArray) => tempImageObjectArray.concat(newImageObject));
-    });
-  };*/
-
   const uploadImageSet = (uploadedImages, description) => {
     let newImageObject = uploadedImages.map((singleUploadedImage) => {
       return {

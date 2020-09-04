@@ -1,9 +1,8 @@
-.upload-image-form{
-  margin-top: 10px;;
+.heading{
+  margin-top: 20px;;
 }
 
-.tile-view {
+.image-tile-preview {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
 }

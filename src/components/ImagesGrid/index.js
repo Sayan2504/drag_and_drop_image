@@ -8,14 +8,12 @@ const ImagesGrid = ( { imageObjectArray } ) => {
   const [imagesArray, setImagesArray] = useState([]);
 
   useEffect(() => {
-    let tempImageArray = [];
-    imageObjectArray.map((singleImageObject) => {
-      let tempImageObject = {
+    let tempImageArray = imageObjectArray.map((singleImageObject) => {
+      return {
         key: singleImageObject.key,
         images: singleImageObject.images,
         description: singleImageObject.description
       };
-      return tempImageArray.push(tempImageObject);
     } );
     setImagesArray(tempImageArray);
   }, [imageObjectArray]);
@@ -33,11 +31,11 @@ const ImagesGrid = ( { imageObjectArray } ) => {
   };
 
   const imageGrid = imagesArray.map((image, index) => (
-    <SingleImageTile image = { image } moveImage = { moveImage } index = { index } />
+    <SingleImageTile key = { index } image = { image } moveImage = { moveImage } index = { index } />
   ));
 
   return (
-    <Container className="p-5">
+    <Container className="pl-5 pr-5 pt-4 pb-4">
       <Row xs={1} md={3} lg={4}>
         { imageGrid }
       </Row>

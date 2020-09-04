@@ -1,77 +1,44 @@
-.hvrbox,
-.hvrbox * {
-  box-sizing: border-box;
-}
-.hvrbox {
-	position: relative;
-	display: inline-block;
-	overflow: hidden;
-	max-width: 100%;
-	height: auto;
-}
-.hvrbox img {
-	max-width: 100%;
-}
-.hvrbox .hvrbox-layer_bottom {
-	display: block;
-}
-.hvrbox .hvrbox-layer_top {
-	opacity: 0;
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, 0.5);
-	color: #fff;
-	padding: 15px;
-	-moz-transition: all 0.4s ease-in-out 0s;
-	-webkit-transition: all 0.4s ease-in-out 0s;
-	-ms-transition: all 0.4s ease-in-out 0s;
-	transition: all 0.4s ease-in-out 0s;
-}
-.hvrbox:hover .hvrbox-layer_top,
-.hvrbox:active .hvrbox-layer_top {
-  opacity: 1;
-}
-.hvrbox .hvrbox-text {
-	text-align: center;
-	font-size: 18px;
-	display: inline-block;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	-moz-transform: translate(-50%, -50%);
-	-webkit-transform: translate(-50%, -50%);
-	-ms-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
-}
-.hvrbox .hvrbox-text_mobile {
-	font-size: 15px;
-	border-top: 1px solid rgb(179, 179, 179);
-	border-top: 1px solid rgba(179, 179, 179, 0.7);
-	margin-top: 5px;
-	padding-top: 2px;
-	display: none;
-}
-.hvrbox.active .hvrbox-text_mobile {
-	display: block;
+.tile-view {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.hvrbox .hvrbox-layer_scale {
-	border-radius: 50%;
-	-moz-transform: scale(0);
-	-webkit-transform: scale(0);
-	-ms-transform: scale(0);
-	transform: scale(0);
+.tile-view:hover .tile-view__image {
+  opacity: 0.5;
 }
-.hvrbox:hover .hvrbox-layer_scale,
-.hvrbox.active .hvrbox-layer_scale {
-	border-radius: 0%;
-	-moz-transform: scale(1);
-	-webkit-transform: scale(1);
-	-ms-transform: scale(1);
-	transform: scale(1);
+
+.tile-view:active .tile-view__image {
+  opacity: 1;
+  border: 7px solid black;
+}
+
+.tile-view:hover .tile-view__description {
+  opacity: 1;
+}
+
+.tile-view:active .tile-view__description {
+  opacity: 0;
+}
+
+.tile-view__image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.tile-view__description {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  transition: .5s ease;
+}
+
+.tile-view__description-text {
+  color: black;
+  font-size: 30px;
+  padding: 16px 32px;
 }
