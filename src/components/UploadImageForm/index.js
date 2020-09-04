@@ -22,7 +22,7 @@ const UploadForm = ( { onSubmit } ) => {
   };
 
   const singleImage = images.map(singleImage => (
-    <Col key={ singleImage.key } sm={4} className="mt-2 pl-1 pr-1 image-tile-preview">
+    <Col key={ singleImage.key } className="mt-2 pl-1 pr-1 image-tile-preview">
       { singleImage.preview ? (
         <Image src = { singleImage.preview } alt="" fluid />
       ) : (
